@@ -1,0 +1,11 @@
+type Entry {
+  teamName: String!
+  email: String!
+  teamSelections: [String!]!
+  fullName: String!
+  date: String!
+}
+
+type Query {
+  entries: [Entry!]!
+}
