@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: '.env'
+})
+
 module.exports = {
   siteMetadata: {
     title: `Hot Tub 2020`,

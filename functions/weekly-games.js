@@ -1,0 +1,21 @@
+const msfRoute = require('./utils/msfRoute')
+const { weeklyGamesRoute } = require('./utils/routes')
+
+
+exports.handler = async () => {
+  const { data, errors } = await msfRoute(
+    weeklyGamesRoute({ seasonYear: 2019, seasonType: 'regular', weekNumber: 5 })
+  )
+
+  if (errors) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify(errors)
+    }
+  }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(data)
+  }
+}

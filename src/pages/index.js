@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
-import { standingsRoute } from '../helpers/utils'
 
 const IndexPage = () => {
+  useEffect(() => {
+    axios.get('/api/weekly-games').then(console.log).catch(console.error)
+  }, [])
   const createEntry = async () => {
     const date = new Date()
     await axios
