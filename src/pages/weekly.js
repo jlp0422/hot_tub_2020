@@ -1,39 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React from 'react'
+import useRequest from '../hooks/useRequest'
 
 const Seasonal = () => {
-  const [games, setGames] = useState([])
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    axios
-      .get('/api/weekly-games', {
-        params: {
-          week: 5
-        }
-      })
-      .then(({ data }) => {
-        console.log(data)
-        setGames(data.games)
-      })
-      .catch(error => {
-        setError(JSON.parse(JSON.stringify(error)))
-        console.error(error)
-      })
-  }, [])
+  // get week number from location prop
+    const { data, error } = useRequest({
+    route: '/api/weekly-games?week=5'
+  })
 
   if (error) {
     return <h3>Error: {error.message}</h3>
   }
 
-  if (!games.length) {
+  if (!data) {
     return <h3>Loading...</h3>
   }
 
   return (
     <div>
       <ul>
-        {games.map(game => (
+        {data.games.map(game => (
           <li key={game.schedule.id}>
             Week {game.schedule.week}: {game.schedule.awayTeam.abbreviation} @{' '}
             {game.schedule.homeTeam.abbreviation}
