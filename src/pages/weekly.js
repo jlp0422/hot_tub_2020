@@ -2,8 +2,9 @@ import React from 'react'
 import useRequest from '../hooks/useRequest'
 
 const Seasonal = () => {
+  // WILL BE USED FOR WINS PER WEEK PAGE
   // get week number from location prop
-    const { data, error } = useRequest({
+    const { data, loading, error } = useRequest({
     route: '/api/weekly-games?week=5'
   })
 
@@ -11,7 +12,7 @@ const Seasonal = () => {
     return <h3>Error: {error.message}</h3>
   }
 
-  if (!data) {
+  if (loading) {
     return <h3>Loading...</h3>
   }
 

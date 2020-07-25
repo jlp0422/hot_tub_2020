@@ -1,4 +1,5 @@
 const sendQuery = require('./utils/sendQuery')
+// const sendEmail = require('./utils/sendEmail')
 
 const CREATE_ENTRY = `
   mutation(
@@ -37,6 +38,8 @@ exports.handler = async event => {
       body: JSON.stringify(errors)
     }
   }
+
+  // sendEmail(data.createEntry)
 
   return {
     statusCode: 200,

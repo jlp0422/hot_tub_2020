@@ -5,7 +5,6 @@ const IndexPage = () => {
   return (
     <div>
       <h1>Hot tub 2020</h1>
-      {/* <button onClick={createEntry}>create an entry</button> */}
       <ul>
         <li>
           <Link to='/standings'>standings</Link>

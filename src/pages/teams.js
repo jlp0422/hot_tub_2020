@@ -51,7 +51,7 @@ const Teams = () => {
       <ul>
         {selectedTeams.map(({ id, name, city, price }) => (
           <li key={id}>
-          {city} {name}: {price}
+            {city} {name}: {price}
           </li>
         ))}
       </ul>

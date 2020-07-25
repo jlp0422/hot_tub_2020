@@ -2,7 +2,8 @@ import React from 'react'
 import useRequest from '../hooks/useRequest'
 
 const Standings = () => {
-  const { data, error } = useRequest({
+  // WILL BE USED FOR NFL STANDINGS PAGE
+  const { data, error, loading } = useRequest({
     route: '/api/standings'
   })
 
@@ -10,7 +11,7 @@ const Standings = () => {
     return <h3>Error: {error.message}</h3>
   }
 
-  if (!data) {
+  if (loading) {
     return <h3>Loading...</h3>
   }
 
