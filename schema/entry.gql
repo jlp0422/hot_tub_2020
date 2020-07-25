@@ -6,6 +6,16 @@ type Entry {
   date: String!
 }
 
+type Team {
+  id: Int!
+  abbreviation: String!
+  city: String!
+  name: String!
+  price: Int!
+}
+
 type Query {
   entries: [Entry!]!
+  entry: Entry!
+  teams: [Team!]!
 }

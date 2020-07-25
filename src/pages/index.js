@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
+import { Link } from 'gatsby'
 
 const IndexPage = () => {
-  useEffect(() => {
-    axios.get('/api/weekly-games').then(console.log).catch(console.error)
-  }, [])
   const createEntry = async () => {
     const date = new Date()
     await axios
@@ -23,6 +21,10 @@ const IndexPage = () => {
     <div>
       <h1>Hot tub 2020</h1>
       <button onClick={createEntry}>create an entry</button>
+      <Link to='/standings'>standings</Link>
+      <Link to='/weekly'>weekly games</Link>
+      <Link to='/seasonal'>seasonal games</Link>
+      <Link to='/teams'>all teams</Link>
     </div>
   )
 }
