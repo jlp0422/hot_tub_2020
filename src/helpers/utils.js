@@ -17,3 +17,6 @@ export const reduceTeamsToDivisions = (memo, { divisionRank, stats, team }) => {
 
 export const reduceTeamsToWins = (memo, { team, stats }) =>
   Object.assign({}, memo, { [team.abbreviation]: stats.standings.wins })
+
+export const reduceSelectionsToTotalWins = winsByTeam => (totalWins, teamAbbrev) =>
+  (totalWins += winsByTeam[teamAbbrev])

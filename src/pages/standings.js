@@ -3,7 +3,6 @@ import useRequest from '../hooks/useRequest'
 import { sortByDivisionRank, reduceTeamsToDivisions } from '../helpers/utils'
 
 const Standings = () => {
-  // WILL BE USED FOR NFL STANDINGS PAGE
   const { data, error, loading } = useRequest({
     route: '/api/standings'
   })

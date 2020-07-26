@@ -1,12 +1,15 @@
 import axios from 'axios'
 import { Link } from 'gatsby'
 import React, { useEffect, useState } from 'react'
-import { reduceTeamsToWins } from '../helpers/utils'
+import {
+  reduceTeamsToWins,
+  reduceSelectionsToTotalWins
+} from '../helpers/utils'
 import useRequest from '../hooks/useRequest'
 
 const IndexPage = () => {
   const [entries, setEntries] = useState([])
-  const { data: standings, error, loading } = useRequest({
+  const { data: standings, loading } = useRequest({
     route: '/api/standings'
   })
 
@@ -28,16 +31,14 @@ const IndexPage = () => {
   }
 
   const winsByTeam = standings.teams.reduce(reduceTeamsToWins, {})
+  const getTotalWins = reduceSelectionsToTotalWins(winsByTeam)
 
   return (
     <div>
       <h1>Hot tub 2020</h1>
       <ul>
         {entries.map(entry => {
-          const totalWins = entry.teamSelections.reduce(
-            (totalWins, teamAbbrev) => (totalWins += winsByTeam[teamAbbrev]),
-            0
-          )
+          const totalWins = entry.teamSelections.reduce(getTotalWins, 0)
           return (
             <li key={entry._id}>
               {entry.teamName}: {totalWins} wins

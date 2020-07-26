@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import EntryView from '../components/EntryView'
 
-const Entry = props => {
-  const { data } = props
+const Entry = ({ data }) => {
   const entry = data.entries.findEntryByID
 
   return (
@@ -13,6 +13,7 @@ const Entry = props => {
           <li key={team}>{team}</li>
         ))}
       </ul>
+      <EntryView teams={entry.teamSelections} />
     </div>
   )
 }
