@@ -48,7 +48,8 @@ const EntryView = ({ teams }) => {
               {Object.entries(teamWinsByWeek[team].byWeek).map(
                 ([weekNumber, isWinner]) => (
                   <li key={weekNumber}>
-                    week {weekNumber}{isWinner ? ': win' : null}
+                    week {weekNumber}
+                    {isWinner ? ': win' : null}
                   </li>
                 )
               )}
