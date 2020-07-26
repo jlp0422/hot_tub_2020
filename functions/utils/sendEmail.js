@@ -6,7 +6,7 @@ const mg = mailgun({
   domain: process.env.MAILGUN_DOMAIN
 })
 
-module.exports = (entry) => {
+module.exports = entry => {
   // entry object
   /**
   {

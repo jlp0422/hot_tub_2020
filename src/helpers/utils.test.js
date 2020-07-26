@@ -52,7 +52,7 @@ describe('reduceTeamsToWins', () => {
 })
 
 describe('reduceSelectionsToTotalWins', () => {
-  const winsByTeam = { MIA: 5, KC: 12, SEA: 9}
+  const winsByTeam = { MIA: 5, KC: 12, SEA: 9 }
   it('takes a winsByTeam map and sums the wins', () => {
     const getWins = reduceSelectionsToTotalWins(winsByTeam)
     expect(getWins(0, 'MIA')).toBe(5)

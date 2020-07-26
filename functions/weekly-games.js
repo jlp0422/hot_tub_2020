@@ -4,7 +4,11 @@ const { weeklyGamesRoute } = require('./utils/routes')
 exports.handler = async request => {
   const { week } = request.queryStringParameters
   const { data, errors } = await msfRoute(
-    weeklyGamesRoute({ seasonYear: 2019, seasonType: 'regular', weekNumber: week })
+    weeklyGamesRoute({
+      seasonYear: 2019,
+      seasonType: 'regular',
+      weekNumber: week
+    })
   )
 
   if (errors) {

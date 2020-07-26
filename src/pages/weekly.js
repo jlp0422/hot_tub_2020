@@ -4,7 +4,7 @@ import useRequest from '../hooks/useRequest'
 const Seasonal = () => {
   // WILL BE USED FOR WINS PER WEEK PAGE
   // get week number from location prop
-    const { data, loading, error } = useRequest({
+  const { data, loading, error } = useRequest({
     route: '/api/weekly-games?week=5'
   })
 
