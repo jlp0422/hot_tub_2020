@@ -8,11 +8,6 @@ const Entry = ({ data }) => {
   return (
     <div>
       <h3>team name: {entry.teamName}</h3>
-      <ul>
-        {entry.teamSelections.map(team => (
-          <li key={team}>{team}</li>
-        ))}
-      </ul>
       <EntryView teams={entry.teamSelections} />
     </div>
   )

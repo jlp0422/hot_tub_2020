@@ -14,30 +14,48 @@ const EntryView = ({ teams }) => {
     return <h3>Loading...</h3>
   }
 
-  const gamesPerTeam = teams.reduce((memo, teamAbbrev) => {
-    const gamesForTeam = data.games.filter(
-      game =>
-        game.schedule.awayTeam.abbreviation === teamAbbrev ||
-        game.schedule.homeTeam.abbreviation === teamAbbrev
-    )
-    return Object.assign({}, memo, { [teamAbbrev]: gamesForTeam }, {})
+  const teamWinsByWeek = teams.reduce((memo, teamAbbrev) => {
+    const gamesForTeam = data.games
+      .filter(
+        game =>
+          game.schedule.awayTeam.abbreviation === teamAbbrev ||
+          game.schedule.homeTeam.abbreviation === teamAbbrev
+      )
+      .reduce((memo, { schedule, score }) => {
+        const isHomeTeam = schedule.homeTeam.abbreviation === teamAbbrev
+        const isWinner = isHomeTeam
+          ? score.homeScoreTotal > score.awayScoreTotal
+          : score.homeScoreTotal < score.awayScoreTotal
+        return Object.assign({}, memo, { [schedule.week]: isWinner })
+      }, {})
+    const totalWins = Object.values(gamesForTeam).filter(Boolean).length
+    return Object.assign({}, memo, {
+      [teamAbbrev]: { byWeek: gamesForTeam, totalWins }
+    })
   }, {})
 
-  console.log(gamesPerTeam)
+  console.log(teamWinsByWeek)
 
   return (
     <div>
-      {/* <ul>
-        {data.games.map(({ schedule, score }) => {
-          const away = `${schedule.awayTeam.abbreviation} (${score.awayScoreTotal})`
-          const home = `${schedule.homeTeam.abbreviation} (${score.homeScoreTotal}`
-          return (
-            <li key={schedule.id}>
-              Week {schedule.week}: {away} @ {home})
+      <ul>
+        {teams.map(team => (
+          <React.Fragment key={team}>
+            <li>
+              {team}: {teamWinsByWeek[team].totalWins} wins
             </li>
-          )
-        })}
-      </ul> */}
+            <ul>
+              {Object.entries(teamWinsByWeek[team].byWeek).map(
+                ([weekNumber, isWinner]) => (
+                  <li key={weekNumber}>
+                    week {weekNumber}{isWinner ? ': win' : null}
+                  </li>
+                )
+              )}
+            </ul>
+          </React.Fragment>
+        ))}
+      </ul>
     </div>
   )
 }
