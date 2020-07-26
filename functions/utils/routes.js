@@ -7,7 +7,14 @@ const seasonalGamesRoute = ({ seasonYear, seasonType, teams = '' }) => {
 }
 
 // can add a teams param here like above
-const standingsRoute = ({ seasonYear, seasonType, stats = 'wins' }) =>
-  `https://api.mysportsfeeds.com/v2.1/pull/nfl/${seasonYear}-${seasonType}/standings.json?stats=${stats}`
+const standingsRoute = ({
+  seasonYear,
+  seasonType,
+  stats = 'wins',
+  teams = ''
+}) => {
+  const teamsParam = teams ? `&team=${teams}` : ''
+  return `https://api.mysportsfeeds.com/v2.1/pull/nfl/${seasonYear}-${seasonType}/standings.json?stats=${stats}${teamsParam}`
+}
 
 module.exports = { weeklyGamesRoute, seasonalGamesRoute, standingsRoute }
