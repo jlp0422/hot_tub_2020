@@ -13,11 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/cache@v1
+    - uses: actions/cache@v2
       with:
         path: ~/.npm
-        key: npm-packages-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: npm-packages-
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
