@@ -6,7 +6,6 @@ const seasonalGamesRoute = ({ seasonYear, seasonType, teams = '' }) => {
   return `https://api.mysportsfeeds.com/v2.1/pull/nfl/${seasonYear}-${seasonType}/games.json${teamsParam}`
 }
 
-// can add a teams param here like above
 const standingsRoute = ({
   seasonYear,
   seasonType,
