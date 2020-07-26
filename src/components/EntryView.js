@@ -15,11 +15,7 @@ const EntryView = ({ teams }) => {
   }
 
   const gamesPerTeam = teams.reduce((memo, teamAbbrev) => {
-    const gamesForTeam = data.games.filter(
-      game =>
-        game.schedule.awayTeam.abbreviation === teamAbbrev ||
-        game.schedule.homeTeam.abbreviation === teamAbbrev
-    )
+    const gamesForTeam = data.games.filter(game => game.schedule.awayTeam.abbreviation === teamAbbrev || game.schedule.homeTeam.abbreviation === teamAbbrev)
     return Object.assign({}, memo, { [teamAbbrev]: gamesForTeam }, {})
   }, {})
 
