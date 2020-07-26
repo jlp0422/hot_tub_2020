@@ -4,6 +4,18 @@
   "description": "Hot Tub 2020 website",
   "version": "1.0.0",
   "author": "Jeremy Philipson <jeremyphilipson@gmail.com>",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "dev": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
@@ -28,22 +40,15 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "babel-jest": "^26.1.0",
+    "babel-preset-gatsby": "^0.5.4",
+    "jest": "^26.1.0",
     "prettier": "2.0.5"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "0BSD",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "dev": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
   "repository": {
     "type": "git"
   }
