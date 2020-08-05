@@ -2,9 +2,9 @@ import React from 'react'
 import useRequest from '../hooks/useRequest'
 
 const EntryView = ({ teams }) => {
-  const { data, error, loading } = useRequest({
-    route: `/api/seasonal-games?teams=${teams.join(',')}`
-  })
+  const { data, error, loading } = useRequest(
+    `/api/seasonal-games?teams=${teams.join(',')}`
+  )
 
   if (error) {
     return <h3>Error: {error.message}</h3>
@@ -14,47 +14,65 @@ const EntryView = ({ teams }) => {
     return <h3>Loading...</h3>
   }
 
+  const getDidTeamPlayInGame = teamAbbrev => game =>
+    game.schedule.awayTeam.abbreviation === teamAbbrev ||
+    game.schedule.homeTeam.abbreviation === teamAbbrev
+
+  const getScheduleForTeam = teamAbbrev => (memo, { schedule, score }) => {
+    const isHomeTeam = schedule.homeTeam.abbreviation === teamAbbrev
+    const isWinner = isHomeTeam
+      ? score.homeScoreTotal > score.awayScoreTotal
+      : score.homeScoreTotal < score.awayScoreTotal
+    return Object.assign({}, memo, { [schedule.week]: isWinner })
+  }
+
+  const getWinsForWeek = weekNumber =>
+    teams.filter(team => teamWinsByWeek[team].byWeek[weekNumber]).length
+
+  const gamesByWeek = data.games.reduce((memo, game) => {
+    const { week } = game.schedule
+    memo[week] ? memo[week].push(game) : (memo[week] = [game])
+    return memo
+  }, {})
+
   const teamWinsByWeek = teams.reduce((memo, teamAbbrev) => {
+    const didTeamPlayInGame = getDidTeamPlayInGame(teamAbbrev)
+    const reduceScheduleForTeam = getScheduleForTeam(teamAbbrev)
+
     const gamesForTeam = data.games
-      .filter(
-        game =>
-          game.schedule.awayTeam.abbreviation === teamAbbrev ||
-          game.schedule.homeTeam.abbreviation === teamAbbrev
-      )
-      .reduce((memo, { schedule, score }) => {
-        const isHomeTeam = schedule.homeTeam.abbreviation === teamAbbrev
-        const isWinner = isHomeTeam
-          ? score.homeScoreTotal > score.awayScoreTotal
-          : score.homeScoreTotal < score.awayScoreTotal
-        return Object.assign({}, memo, { [schedule.week]: isWinner })
-      }, {})
+      .filter(didTeamPlayInGame)
+      .reduce(reduceScheduleForTeam, {})
+
     const totalWins = Object.values(gamesForTeam).filter(Boolean).length
+
     return Object.assign({}, memo, {
       [teamAbbrev]: { byWeek: gamesForTeam, totalWins }
     })
   }, {})
 
-  console.log(teamWinsByWeek)
+  const combinedTeamWins = teams.reduce(
+    (memo, teamAbbrev) => (memo += teamWinsByWeek[teamAbbrev].totalWins),
+    0
+  )
 
   return (
     <div>
+      <h2>EntryView.js</h2>
+      <h4>total wins: {combinedTeamWins}</h4>
       <ul>
         {teams.map(team => (
           <React.Fragment key={team}>
             <li>
               {team}: {teamWinsByWeek[team].totalWins} wins
             </li>
-            <ul>
-              {Object.entries(teamWinsByWeek[team].byWeek).map(
-                ([weekNumber, isWinner]) => (
-                  <li key={weekNumber}>
-                    week {weekNumber}
-                    {isWinner ? ': win' : null}
-                  </li>
-                )
-              )}
-            </ul>
           </React.Fragment>
+        ))}
+      </ul>
+      <ul>
+        {Object.entries(gamesByWeek).map(([weekNumber, games]) => (
+          <li key={weekNumber}>
+            week {weekNumber}, total wins: {getWinsForWeek(weekNumber)}
+          </li>
         ))}
       </ul>
     </div>

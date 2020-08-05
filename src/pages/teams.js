@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useReducer } from 'react'
+import LayoutWithNav from '../components/shared/LayoutWithNav'
 import TeamsList from '../components/TeamsList'
 
 const INITIAL_STATE = { selectedTeams: [] }
@@ -45,7 +46,7 @@ const Teams = () => {
   const totalCost = selectedTeams.reduce((acc, { price }) => (acc += price), 0)
 
   return (
-    <div>
+    <LayoutWithNav>
       <h3>total cost: {totalCost}</h3>
       <h3>selected teams:</h3>
       <ul>
@@ -57,7 +58,7 @@ const Teams = () => {
       </ul>
       <button onClick={createEntry}>Submit entry</button>
       <TeamsList {...{ addTeam, removeTeam, selectedTeams }} />
-    </div>
+    </LayoutWithNav>
   )
 }
 

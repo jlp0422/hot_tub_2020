@@ -1,13 +1,12 @@
 import React from 'react'
 import useRequest from '../hooks/useRequest'
+import LayoutWithNav from '../components/shared/LayoutWithNav'
 
 const Seasonal = () => {
   // WILL BE USED FOR ENTRY/ID PAGE
-  const { data, error, loading } = useRequest({
-    // to add teams: ?teams=MIA,BUF,NYJ
-    // probably get from location prop
-    route: '/api/seasonal-games'
-  })
+  // to add teams: ?teams=MIA,BUF,NYJ
+  // probably get from location prop
+  const { data, error, loading } = useRequest('/api/seasonal-games')
 
   if (error) {
     return <h3>Error: {error.message}</h3>
@@ -18,7 +17,7 @@ const Seasonal = () => {
   }
 
   return (
-    <div>
+    <LayoutWithNav>
       <ul>
         {data.games.map(({ schedule, score }) => {
           const away = `${schedule.awayTeam.abbreviation} (${score.awayScoreTotal})`
@@ -30,7 +29,7 @@ const Seasonal = () => {
           )
         })}
       </ul>
-    </div>
+    </LayoutWithNav>
   )
 }
 

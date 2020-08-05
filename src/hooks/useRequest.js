@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-const useRequest = ({ route, initialState = null }) => {
+const useRequest = (route, { initialState = null } = {}) => {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(initialState)
   const [error, setError] = useState(null)

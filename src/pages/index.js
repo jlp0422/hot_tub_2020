@@ -1,32 +1,21 @@
-import axios from 'axios'
-import { Link } from 'gatsby'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import LayoutWithNav from '../components/shared/LayoutWithNav'
 import {
-  reduceTeamsToWins,
-  reduceSelectionsToTotalWins
+  reduceSelectionsToTotalWins,
+  reduceTeamsToWins
 } from '../helpers/utils'
 import useRequest from '../hooks/useRequest'
+import { Link } from 'gatsby'
 
-const IndexPage = () => {
-  const [entries, setEntries] = useState([])
-  const { data: standings, loading } = useRequest({
-    route: '/api/standings'
-  })
+const App = () => {
+  const { data: standings, loading: isLoadingStandings } = useRequest(
+    '/api/standings'
+  )
+  const { data: entries, loading: isLoadingEntries } = useRequest(
+    '/api/entries'
+  )
 
-  useEffect(() => {
-    const loadEntries = async () => {
-      const { entries } = await axios
-        .post('/api/entries')
-        .then(({ data }) => data)
-        .catch(console.error)
-
-      setEntries(entries.data)
-    }
-
-    loadEntries()
-  }, [])
-
-  if (loading) {
+  if (isLoadingEntries || isLoadingStandings) {
     return null
   }
 
@@ -34,35 +23,22 @@ const IndexPage = () => {
   const getTotalWins = reduceSelectionsToTotalWins(winsByTeam)
 
   return (
-    <div>
+    <LayoutWithNav>
       <h1>Hot tub 2020</h1>
       <ul>
-        {entries.map(entry => {
+        {entries.entries.data.map(entry => {
           const totalWins = entry.teamSelections.reduce(getTotalWins, 0)
           return (
-            <li key={entry._id}>
-              {entry.teamName}: {totalWins} wins
-            </li>
+            <Link key={entry._id} to={`/entry/${entry._id}`}>
+              <li>
+                {entry.teamName}: {totalWins} wins
+              </li>
+            </Link>
           )
         })}
       </ul>
-
-      <ul>
-        <li>
-          <Link to='/standings'>standings</Link>
-        </li>
-        <li>
-          <Link to='/weekly'>weekly games</Link>
-        </li>
-        <li>
-          <Link to='/seasonal'>seasonal games</Link>
-        </li>
-        <li>
-          <Link to='/teams'>all teams</Link>
-        </li>
-      </ul>
-    </div>
+    </LayoutWithNav>
   )
 }
 
-export default IndexPage
+export default App

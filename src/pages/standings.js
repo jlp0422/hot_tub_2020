@@ -1,11 +1,10 @@
 import React from 'react'
 import useRequest from '../hooks/useRequest'
+import LayoutWithNav from '../components/shared/LayoutWithNav'
 import { sortByDivisionRank, reduceTeamsToDivisions } from '../helpers/utils'
 
 const Standings = () => {
-  const { data, error, loading } = useRequest({
-    route: '/api/standings'
-  })
+  const { data, error, loading } = useRequest('/api/standings')
 
   if (error) {
     return <h3>Error: {error.message}</h3>
@@ -18,7 +17,7 @@ const Standings = () => {
   const divisions = data.teams.reduce(reduceTeamsToDivisions, {})
 
   return (
-    <div>
+    <LayoutWithNav>
       <ul>
         {Object.entries(divisions)
           .sort()
@@ -40,7 +39,7 @@ const Standings = () => {
             )
           })}
       </ul>
-    </div>
+    </LayoutWithNav>
   )
 }
 

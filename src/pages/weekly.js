@@ -1,12 +1,11 @@
 import React from 'react'
 import useRequest from '../hooks/useRequest'
+import LayoutWithNav from '../components/shared/LayoutWithNav'
 
 const Seasonal = () => {
   // WILL BE USED FOR WINS PER WEEK PAGE
   // get week number from location prop
-  const { data, loading, error } = useRequest({
-    route: '/api/weekly-games?week=5'
-  })
+  const { data, loading, error } = useRequest('/api/weekly-games?week=5')
 
   if (error) {
     return <h3>Error: {error.message}</h3>
@@ -17,7 +16,7 @@ const Seasonal = () => {
   }
 
   return (
-    <div>
+    <LayoutWithNav>
       <ul>
         {data.games.map(game => (
           <li key={game.schedule.id}>
@@ -26,7 +25,7 @@ const Seasonal = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </LayoutWithNav>
   )
 }
 
