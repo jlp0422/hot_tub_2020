@@ -1,20 +1,21 @@
 import React from 'react'
 import useRequest from '../hooks/useRequest'
 import LayoutWithNav from '../components/shared/LayoutWithNav'
+import HandleRequest from '../components/shared/HandleRequest'
 
-const Seasonal = () => {
+const WeeklyContainer = () => {
   // WILL BE USED FOR WINS PER WEEK PAGE
   // get week number from location prop
   const { data, loading, error } = useRequest('/api/weekly-games?week=5')
 
-  if (error) {
-    return <h3>Error: {error.message}</h3>
-  }
+  return (
+    <HandleRequest loading={loading} error={error}>
+      <Weekly data={data} />
+    </HandleRequest>
+  )
+}
 
-  if (loading) {
-    return <h3>Loading...</h3>
-  }
-
+const Weekly = ({ data }) => {
   return (
     <LayoutWithNav>
       <ul>
@@ -29,4 +30,4 @@ const Seasonal = () => {
   )
 }
 
-export default Seasonal
+export default WeeklyContainer

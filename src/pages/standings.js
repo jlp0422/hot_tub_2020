@@ -2,20 +2,19 @@ import React from 'react'
 import useRequest from '../hooks/useRequest'
 import LayoutWithNav from '../components/shared/LayoutWithNav'
 import { sortByDivisionRank, reduceTeamsToDivisions } from '../helpers/utils'
+import HandleRequest from '../components/shared/HandleRequest'
 
-const Standings = () => {
+const StandingsContainer = () => {
   const { data, error, loading } = useRequest('/api/standings')
+  return (
+    <HandleRequest error={error} loading={loading}>
+      <Standings data={data} />
+    </HandleRequest>
+  )
+}
 
-  if (error) {
-    return <h3>Error: {error.message}</h3>
-  }
-
-  if (loading) {
-    return <h3>Loading...</h3>
-  }
-
+const Standings = ({ data }) => {
   const divisions = data.teams.reduce(reduceTeamsToDivisions, {})
-
   return (
     <LayoutWithNav>
       <ul>
@@ -43,4 +42,4 @@ const Standings = () => {
   )
 }
 
-export default Standings
+export default StandingsContainer

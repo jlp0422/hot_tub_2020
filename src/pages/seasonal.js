@@ -1,21 +1,22 @@
 import React from 'react'
 import useRequest from '../hooks/useRequest'
 import LayoutWithNav from '../components/shared/LayoutWithNav'
+import HandleRequest from '../components/shared/HandleRequest'
 
-const Seasonal = () => {
+const SeasonalContainer = () => {
   // WILL BE USED FOR ENTRY/ID PAGE
   // to add teams: ?teams=MIA,BUF,NYJ
   // probably get from location prop
   const { data, error, loading } = useRequest('/api/seasonal-games')
 
-  if (error) {
-    return <h3>Error: {error.message}</h3>
-  }
+  return (
+    <HandleRequest loading={loading} error={error}>
+      <Seasonal data={data} />
+    </HandleRequest>
+  )
+}
 
-  if (loading) {
-    return <h3>Loading...</h3>
-  }
-
+const Seasonal = ({ data }) => {
   return (
     <LayoutWithNav>
       <ul>
@@ -33,4 +34,4 @@ const Seasonal = () => {
   )
 }
 
-export default Seasonal
+export default SeasonalContainer

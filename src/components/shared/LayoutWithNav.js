@@ -18,7 +18,7 @@ const LayoutWithNav = ({ children }) => {
           <Link to='/seasonal'>seasonal games</Link>
         </li>
         <li>
-          <Link to='/teams'>all teams</Link>
+          <Link to='/entry/create'>create entry</Link>
         </li>
       </ul>
       {children}

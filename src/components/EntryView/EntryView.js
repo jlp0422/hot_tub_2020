@@ -1,31 +1,10 @@
 import React from 'react'
-import useRequest from '../hooks/useRequest'
+import {
+  getDidTeamPlayInGame,
+  getWinnerScheduleForTeam
+} from '../../helpers/utils'
 
-const EntryView = ({ teams }) => {
-  const { data, error, loading } = useRequest(
-    `/api/seasonal-games?teams=${teams.join(',')}`
-  )
-
-  if (error) {
-    return <h3>Error: {error.message}</h3>
-  }
-
-  if (loading) {
-    return <h3>Loading...</h3>
-  }
-
-  const getDidTeamPlayInGame = teamAbbrev => game =>
-    game.schedule.awayTeam.abbreviation === teamAbbrev ||
-    game.schedule.homeTeam.abbreviation === teamAbbrev
-
-  const getScheduleForTeam = teamAbbrev => (memo, { schedule, score }) => {
-    const isHomeTeam = schedule.homeTeam.abbreviation === teamAbbrev
-    const isWinner = isHomeTeam
-      ? score.homeScoreTotal > score.awayScoreTotal
-      : score.homeScoreTotal < score.awayScoreTotal
-    return Object.assign({}, memo, { [schedule.week]: isWinner })
-  }
-
+const EntryView = ({ data, teams }) => {
   const getWinsForWeek = weekNumber =>
     teams.filter(team => teamWinsByWeek[team].byWeek[weekNumber]).length
 
@@ -37,11 +16,11 @@ const EntryView = ({ teams }) => {
 
   const teamWinsByWeek = teams.reduce((memo, teamAbbrev) => {
     const didTeamPlayInGame = getDidTeamPlayInGame(teamAbbrev)
-    const reduceScheduleForTeam = getScheduleForTeam(teamAbbrev)
+    const reduceGamesToWins = getWinnerScheduleForTeam(teamAbbrev)
 
     const gamesForTeam = data.games
       .filter(didTeamPlayInGame)
-      .reduce(reduceScheduleForTeam, {})
+      .reduce(reduceGamesToWins, {})
 
     const totalWins = Object.values(gamesForTeam).filter(Boolean).length
 

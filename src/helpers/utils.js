@@ -22,3 +22,18 @@ export const reduceSelectionsToTotalWins = winsByTeam => (
   totalWins,
   teamAbbrev
 ) => (totalWins += winsByTeam[teamAbbrev])
+
+export const getDidTeamPlayInGame = teamAbbrev => game =>
+  game.schedule.awayTeam.abbreviation === teamAbbrev ||
+  game.schedule.homeTeam.abbreviation === teamAbbrev
+
+export const getWinnerScheduleForTeam = teamAbbrev => (
+  memo,
+  { schedule, score }
+) => {
+  const isHomeTeam = schedule.homeTeam.abbreviation === teamAbbrev
+  const isWinner = isHomeTeam
+    ? score.homeScoreTotal > score.awayScoreTotal
+    : score.homeScoreTotal < score.awayScoreTotal
+  return Object.assign({}, memo, { [schedule.week]: isWinner })
+}
