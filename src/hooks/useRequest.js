@@ -18,7 +18,6 @@ const useRequest = (route, { initialState = null } = {}) => {
         }
       })
       .catch(error => {
-        setLoading(false)
         setError(error.toJSON())
         console.error(error)
       })

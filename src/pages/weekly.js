@@ -1,6 +1,6 @@
 import React from 'react'
 import useRequest from '../hooks/useRequest'
-import LayoutWithNav from '../components/shared/LayoutWithNav'
+import Layout from '../components/shared/Layout'
 import HandleRequest from '../components/shared/HandleRequest'
 
 const WeeklyContainer = () => {
@@ -9,24 +9,24 @@ const WeeklyContainer = () => {
   const { data, loading, error } = useRequest('/api/weekly-games?week=5')
 
   return (
-    <HandleRequest loading={loading} error={error}>
-      <Weekly data={data} />
-    </HandleRequest>
+    <Layout>
+      <HandleRequest loading={loading} error={error}>
+        <Weekly data={data} />
+      </HandleRequest>
+    </Layout>
   )
 }
 
 const Weekly = ({ data }) => {
   return (
-    <LayoutWithNav>
-      <ul>
-        {data.games.map(game => (
-          <li key={game.schedule.id}>
-            Week {game.schedule.week}: {game.schedule.awayTeam.abbreviation} @{' '}
-            {game.schedule.homeTeam.abbreviation}
-          </li>
-        ))}
-      </ul>
-    </LayoutWithNav>
+    <ul>
+      {data.games.map(game => (
+        <li key={game.schedule.id}>
+          Week {game.schedule.week}: {game.schedule.awayTeam.abbreviation} @{' '}
+          {game.schedule.homeTeam.abbreviation}
+        </li>
+      ))}
+    </ul>
   )
 }
 
