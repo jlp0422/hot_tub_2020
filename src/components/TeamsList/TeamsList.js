@@ -6,21 +6,23 @@ const TeamsList = ({ addTeam, removeTeam, selectedTeams, teamOptions }) => {
   // 2020 O/U
   // price
   return (
-    <ul>
-      {teamOptions.map(team => {
-        const { id, name, city, price } = team
-        const isSelected = selectedTeams.find(t => t.id === id)
-        const [handler, text] = isSelected
-          ? [removeTeam, 'Remove team']
-          : [addTeam, 'Add team']
-        return (
-          <li key={id}>
-            {city} {name}: ${price}
-            <button onClick={() => handler(team)}>{text}</button>
-          </li>
-        )
-      })}
-    </ul>
+    <div>
+      <ul>
+        {teamOptions.map(team => {
+          const { id, name, city, price } = team
+          const isSelected = selectedTeams.find(t => t.id === id)
+          const [handler, text] = isSelected
+            ? [removeTeam, 'Remove team']
+            : [addTeam, 'Add team']
+          return (
+            <li key={id}>
+              {city} {name}: ${price}
+              <button onClick={() => handler(team)}>{text}</button>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
   )
 }
 
