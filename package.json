@@ -8,7 +8,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "dev": "gatsby develop",
-    "format": "pretty-quick --staged --no-restage --pattern \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "pretty-quick --staged --pattern \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

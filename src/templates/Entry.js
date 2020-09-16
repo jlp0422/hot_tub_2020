@@ -7,7 +7,6 @@ const Entry = ({ data }) => {
 
   return (
     <div>
-
       <h3>team name: {entry.teamName}</h3>
       <EntryView teams={entry.teamSelections} />
     </div>
