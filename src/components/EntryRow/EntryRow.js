@@ -33,9 +33,11 @@ const EntryRow = ({ entry, getTotalWins }) => {
 
   return (
     <Container>
-      <span><TeamLink key={_id} to={`/entry/${_id}`}>
-        {teamName}
-      </TeamLink></span>
+      <span>
+        <TeamLink key={_id} to={`/entry/${_id}`}>
+          {teamName}
+        </TeamLink>
+      </span>
       <Wins>{totalWins}</Wins>
     </Container>
   )
