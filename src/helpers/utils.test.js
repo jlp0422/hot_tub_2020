@@ -37,22 +37,41 @@ describe('reduceTeamsToDivisions', () => {
 
 describe('reduceTeamsToWins', () => {
   const team = {
-    team: { abbreviation: 'MIA' },
+    team: { abbreviation: 'MIA', officialLogoImageSrc: 'path/to/logo' },
     stats: { standings: { wins: 5 } }
   }
   it('adds a key/value of team abbrev and total wins', () => {
     expect(reduceTeamsToWins({}, team)).toEqual({
-      MIA: 5
+      MIA: {
+        wins: 5,
+        logo: 'path/to/logo.svg'
+      }
     })
-    expect(reduceTeamsToWins({ KC: 12 }, team)).toEqual({
-      MIA: 5,
-      KC: 12
+    expect(
+      reduceTeamsToWins(
+        {
+          KC: {
+            wins: 12,
+            logo: 'path/to/logo.svg'
+          }
+        },
+        team
+      )
+    ).toEqual({
+      MIA: {
+        wins: 5,
+        logo: 'path/to/logo.svg'
+      },
+      KC: {
+        wins: 12,
+        logo: 'path/to/logo.svg'
+      }
     })
   })
 })
 
 describe('reduceSelectionsToTotalWins', () => {
-  const winsByTeam = { MIA: 5, KC: 12, SEA: 9 }
+  const winsByTeam = { MIA: { wins: 5 }, KC: { wins: 12 }, SEA: { wins: 9 } }
   it('takes a winsByTeam map and sums the wins', () => {
     const getWins = reduceSelectionsToTotalWins(winsByTeam)
     expect(getWins(0, 'MIA')).toBe(5)
