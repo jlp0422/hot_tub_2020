@@ -3,7 +3,7 @@ import useRequest from '../../hooks/useRequest'
 import HandleRequest from '../shared/HandleRequest'
 import EntryList from './EntryList'
 
-const EntryListContainer = ({ teams }) => {
+const EntryListContainer = () => {
   const {
     data: standings,
     loading: isLoadingStandings,

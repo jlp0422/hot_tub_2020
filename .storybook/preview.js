@@ -3,3 +3,6 @@ export const parameters = {
 }
 
 global.__BASE_PATH__ = ''
+global.___loader = {
+  enqueue: () => {}
+}

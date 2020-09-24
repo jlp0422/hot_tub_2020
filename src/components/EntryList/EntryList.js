@@ -18,7 +18,18 @@ const EntryList = ({ entries, standings }) => {
   return (
     <Ul>
       {entries.entries.data.map(entry => (
-        <EntryRow key={entry._id} entry={entry} getTotalWins={getTotalWins} />
+        <EntryRow
+          key={entry._id}
+          entry={entry}
+          getTotalWins={getTotalWins}
+          teamLogos={entry.teamSelections.reduce(
+            (memo, teamAbbrev) =>
+              Object.assign({}, memo, {
+                [teamAbbrev]: winsByTeam[teamAbbrev].logo
+              }),
+            {}
+          )}
+        />
       ))}
     </Ul>
   )

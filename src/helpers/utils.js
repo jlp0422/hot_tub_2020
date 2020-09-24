@@ -16,12 +16,17 @@ export const reduceTeamsToDivisions = (memo, { divisionRank, stats, team }) => {
 }
 
 export const reduceTeamsToWins = (memo, { team, stats }) =>
-  Object.assign({}, memo, { [team.abbreviation]: stats.standings.wins })
+  Object.assign({}, memo, {
+    [team.abbreviation]: {
+      wins: stats.standings.wins,
+      logo: `${team.officialLogoImageSrc}.svg`
+    }
+  })
 
 export const reduceSelectionsToTotalWins = winsByTeam => (
   totalWins,
   teamAbbrev
-) => (totalWins += winsByTeam[teamAbbrev])
+) => (totalWins += winsByTeam[teamAbbrev].wins)
 
 export const getDidTeamPlayInGame = teamAbbrev => game =>
   game.schedule.awayTeam.abbreviation === teamAbbrev ||
