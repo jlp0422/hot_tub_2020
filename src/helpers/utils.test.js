@@ -44,7 +44,8 @@ describe('reduceTeamsToWins', () => {
     expect(reduceTeamsToWins({}, team)).toEqual({
       MIA: {
         wins: 5,
-        logo: 'path/to/logo.svg'
+        logo: 'path/to/logo.svg',
+        colors: ['abc']
       }
     })
     expect(
@@ -52,7 +53,8 @@ describe('reduceTeamsToWins', () => {
         {
           KC: {
             wins: 12,
-            logo: 'path/to/logo.svg'
+            logo: 'path/to/logo.svg',
+            colors: ['abc']
           }
         },
         team
@@ -60,11 +62,13 @@ describe('reduceTeamsToWins', () => {
     ).toEqual({
       MIA: {
         wins: 5,
-        logo: 'path/to/logo.svg'
+        logo: 'path/to/logo.svg',
+        colors: ['abc']
       },
       KC: {
         wins: 12,
-        logo: 'path/to/logo.svg'
+        logo: 'path/to/logo.svg',
+        colors: ['abc']
       }
     })
   })

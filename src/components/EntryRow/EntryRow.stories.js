@@ -17,40 +17,72 @@ const WINS_PER_TEAM = {
 
 export default {
   component: EntryRow,
-  title: 'EntryRow'
+  title: 'Entry/EntryRow'
 }
+
+const TEAMS_INFO = {
+  CAR: {
+    logo:
+      'https://static.www.nfl.com/image/private/t_q-best/league/ervfzgrqdpnc7lh5gqwq.svg',
+    colors: ['#bada55']
+  },
+  ATL: {
+    logo:
+      'https://static.www.nfl.com/image/private/t_q-best/league/d8m7hzpsbrl6pnqht8op.svg',
+    colors: ['#36c565']
+  },
+  MIA: {
+    logo:
+      'https://static.www.nfl.com/image/private/t_q-best/league/lits6p8ycthy9to70bnt.svg',
+    colors: ['#36c565']
+  },
+  SEA: {
+    logo:
+      'https://static.www.nfl.com/image/private/t_q-best/league/gcytzwpjdzbpwnwxincg.svg',
+    colors: ['#36c565']
+  },
+  KC: {
+    logo:
+      'https://static.www.nfl.com/image/private/t_q-best/league/ujshjqvmnxce8m4obmvs.svg',
+    colors: ['#1493ff']
+  },
+  IND: {
+    logo:
+      'https://static.www.nfl.com/image/private/t_q-best/league/ketwqeuschqzjsllbid5.svg',
+    colors: ['#1493ff']
+  },
+  SF: {
+    logo:
+      'https://static.www.nfl.com/image/private/t_q-best/league/dxibuyxbk0b9ua5ih9hn.svg',
+    colors: ['#bada55']
+  },
+  BUF: {
+    logo:
+      'https://static.www.nfl.com/image/private/t_q-best/league/giphcy6ie9mxbnldntsf.svg',
+    colors: ['#bada55']
+  },
+  DEN: {
+    logo:
+      'https://static.www.nfl.com/image/private/t_q-best/league/t0p7m5cjdjy18rnzzqbx.svg',
+    colors: ['#1493ff']
+  }
+}
+
+const ENTRY = {
+  teamSelections: ['CAR', 'ATL', 'MIA', 'SEA', 'KC'],
+  _id: 1,
+  teamName: 'The White Walkers',
+  fullName: 'jeremy philipson',
+  email: 'jeremyphilipson@gmail.com'
+}
+
+const GET_TOTAL_WINS = (memo, team) => (memo += WINS_PER_TEAM[team])
 
 // Each story then reuses that template
 export const Primary = Story.bind({})
 
 Primary.args = {
-  entry: {
-    teamSelections: ['CAR', 'ATL', 'MIA', 'SEA', 'KC'],
-    _id: 1,
-    teamName: 'The White Walkers',
-    fullName: 'jeremy philipson',
-    email: 'jeremyphilipson@gmail.com'
-  },
-  getTotalWins: (memo, team) => (memo += WINS_PER_TEAM[team]),
-  teamLogos: {
-    CAR:
-      'https://static.www.nfl.com/image/private/t_q-best/league/ervfzgrqdpnc7lh5gqwq.svg',
-    ATL:
-      'https://static.www.nfl.com/image/private/t_q-best/league/d8m7hzpsbrl6pnqht8op.svg',
-    MIA:
-      'https://static.www.nfl.com/image/private/t_q-best/league/lits6p8ycthy9to70bnt.svg',
-    SEA:
-      'https://static.www.nfl.com/image/private/t_q-best/league/gcytzwpjdzbpwnwxincg.svg',
-    KC:
-      'https://static.www.nfl.com/image/private/t_q-best/league/ujshjqvmnxce8m4obmvs.svg',
-    IND:
-      'https://static.www.nfl.com/image/private/t_q-best/league/ketwqeuschqzjsllbid5.svg',
-    SF:
-      'https://static.www.nfl.com/image/private/t_q-best/league/dxibuyxbk0b9ua5ih9hn.svg',
-    BUF:
-      'https://static.www.nfl.com/image/private/t_q-best/league/giphcy6ie9mxbnldntsf.svg',
-    DEN:
-      'https://static.www.nfl.com/image/private/t_q-best/league/t0p7m5cjdjy18rnzzqbx.svg'
-  },
-  label: 'EntryRow'
+  entry: ENTRY,
+  getTotalWins: GET_TOTAL_WINS,
+  teamsInfo: TEAMS_INFO
 }

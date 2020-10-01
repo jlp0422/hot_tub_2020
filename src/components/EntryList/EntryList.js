@@ -22,13 +22,12 @@ const EntryList = ({ entries, standings }) => {
           key={entry._id}
           entry={entry}
           getTotalWins={getTotalWins}
-          teamLogos={entry.teamSelections.reduce(
-            (memo, teamAbbrev) =>
-              Object.assign({}, memo, {
-                [teamAbbrev]: winsByTeam[teamAbbrev].logo
-              }),
-            {}
-          )}
+          teamsInfo={entry.teamSelections.reduce((memo, teamAbbrev) => {
+            const { logo, colors } = winsByTeam[teamAbbrev]
+            return Object.assign({}, memo, {
+              [teamAbbrev]: { logo, colors }
+            })
+          }, {})}
         />
       ))}
     </Ul>

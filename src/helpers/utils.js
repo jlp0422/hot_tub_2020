@@ -19,7 +19,8 @@ export const reduceTeamsToWins = (memo, { team, stats }) =>
   Object.assign({}, memo, {
     [team.abbreviation]: {
       wins: stats.standings.wins,
-      logo: `${team.officialLogoImageSrc}.svg`
+      logo: `${team.officialLogoImageSrc}.svg`,
+      colors: team.teamColoursHex
     }
   })
 
