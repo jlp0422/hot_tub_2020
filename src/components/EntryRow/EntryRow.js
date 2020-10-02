@@ -1,5 +1,12 @@
 import React from 'react'
-import { Container, Img, TeamLink, TeamLogos, Wins } from './EntryRow.styles'
+import {
+  Container,
+  Img,
+  TeamLink,
+  TeamName,
+  TeamLogos,
+  Wins
+} from './EntryRow.styles'
 
 const EntryRow = ({ entry, getTotalWins, teamsInfo }) => {
   const { teamSelections, _id, teamName } = entry
@@ -7,11 +14,11 @@ const EntryRow = ({ entry, getTotalWins, teamsInfo }) => {
 
   return (
     <Container>
-      <span>
+      <TeamName>
         <TeamLink key={_id} to={`/entry/${_id}`}>
           {teamName}
         </TeamLink>
-      </span>
+      </TeamName>
       <TeamLogos>
         {teamSelections.map(team => (
           <Img

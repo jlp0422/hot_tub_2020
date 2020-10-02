@@ -1,19 +1,29 @@
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
+import { margin } from 'polished'
 
 export const Container = styled.li`
-  font-size: ${({ theme }) => theme.size.h5};
   background-color: lightslategray;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
+  padding: ${({ theme }) => theme.size.space.xl};
+  border-radius: ${({ theme }) => theme.size.space.xs};
   display: grid;
-  grid-template-columns: 1fr 1fr 100px;
+  grid-template-columns: 2fr 3fr 100px;
   align-items: center;
   font-weight: bold;
 `
 
+export const TeamName = styled.span`
+  font-size: ${({ theme }) => theme.size.copy.h5};
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  :hover {
+    color: lightgray;
+  }
+`
+
 export const TeamLink = styled(Link)`
-  font-size: ${({ theme }) => theme.size.h2};
+  font-size: ${({ theme }) => theme.size.copy.h2};
   text-decoration: none;
   color: white;
   :hover {
@@ -23,13 +33,16 @@ export const TeamLink = styled(Link)`
 
 export const TeamLogos = styled.div`
   margin: 0;
+  line-height: 0;
+  overflow: scroll;
+  white-space: nowrap;
 `
 
 export const Img = styled.img`
   width: ${props => props.size}px;
   height: ${props => props.size}px;
-  margin: 5px 0 0 5px;
-  padding: 2px;
+  ${props => margin(0, 0, 0, props.theme.size.space.xs)};
+  padding: ${({ theme }) => theme.size.space.xxs};
   background-color: ${props => props.bgColor};
   border-radius: 50%;
   :first-of-type {
@@ -38,7 +51,9 @@ export const Img = styled.img`
 `
 
 export const Wins = styled.div`
+  font-size: ${({ theme }) => theme.size.copy.h5};
+
   margin: 0;
   text-align: right;
-  font-size: ${({ theme }) => theme.size.h2};
+  font-size: ${({ theme }) => theme.size.copy.h2};
 `

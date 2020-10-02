@@ -1,7 +1,12 @@
 import React from 'react'
 import EntryRow from './EntryRow'
 
-const Story = args => <EntryRow {...args} />
+export default {
+  component: EntryRow,
+  title: 'Entry/EntryRow'
+}
+
+const Template = args => <EntryRow {...args} />
 
 const WINS_PER_TEAM = {
   CAR: 2,
@@ -13,11 +18,6 @@ const WINS_PER_TEAM = {
   SF: 4,
   BUF: 8,
   DEN: 3
-}
-
-export default {
-  component: EntryRow,
-  title: 'Entry/EntryRow'
 }
 
 const TEAMS_INFO = {
@@ -78,11 +78,39 @@ const ENTRY = {
 
 const GET_TOTAL_WINS = (memo, team) => (memo += WINS_PER_TEAM[team])
 
-// Each story then reuses that template
-export const Primary = Story.bind({})
-
+export const Primary = Template.bind({})
 Primary.args = {
   entry: ENTRY,
+  getTotalWins: GET_TOTAL_WINS,
+  teamsInfo: TEAMS_INFO
+}
+
+export const LongName = Template.bind({})
+LongName.args = {
+  entry: {
+    ...ENTRY,
+    teamName: 'BeatBobbyFlayOnFoodNetworkAtNight'
+  },
+  getTotalWins: GET_TOTAL_WINS,
+  teamsInfo: TEAMS_INFO
+}
+
+export const ManyTeams = Template.bind({})
+ManyTeams.args = {
+  entry: {
+    ...ENTRY,
+    teamSelections: [
+      'CAR',
+      'ATL',
+      'MIA',
+      'SEA',
+      'KC',
+      'IND',
+      'SF',
+      'BUF',
+      'DEN'
+    ]
+  },
   getTotalWins: GET_TOTAL_WINS,
   teamsInfo: TEAMS_INFO
 }
