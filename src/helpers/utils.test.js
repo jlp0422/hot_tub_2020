@@ -37,7 +37,11 @@ describe('reduceTeamsToDivisions', () => {
 
 describe('reduceTeamsToWins', () => {
   const team = {
-    team: { abbreviation: 'MIA', officialLogoImageSrc: 'path/to/logo' },
+    team: {
+      abbreviation: 'MIA',
+      officialLogoImageSrc: 'path/to/logo',
+      teamColoursHex: ['abc']
+    },
     stats: { standings: { wins: 5 } }
   }
   it('adds a key/value of team abbrev and total wins', () => {
