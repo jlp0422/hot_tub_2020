@@ -3,6 +3,7 @@ import useRequest from '../hooks/useRequest'
 import Layout from '../components/shared/Layout'
 import { sortByDivisionRank, reduceTeamsToDivisions } from '../helpers/utils'
 import HandleRequest from '../components/shared/HandleRequest'
+import Division from '../components/Division'
 
 const StandingsContainer = () => {
   const { data, error, loading } = useRequest('/api/standings')
@@ -17,27 +18,19 @@ const StandingsContainer = () => {
 
 const Standings = ({ data }) => {
   const divisions = data.teams.reduce(reduceTeamsToDivisions, {})
+  const sortedDivisions = Object.entries(divisions).sort()
   return (
     <ul>
-      {Object.entries(divisions)
-        .sort()
-        .map(([divisionName, teams]) => {
-          const sortedTeams = [...teams].sort(sortByDivisionRank)
-          return (
-            <div key={divisionName}>
-              <h4>{divisionName}</h4>
-              <ul>
-                {sortedTeams.map(team => (
-                  <li key={team.team.id}>
-                    {team.team.city} {team.team.name}:{' '}
-                    {team.stats.standings.wins} Wins,{' '}
-                    {team.divisionRank.gamesBack} games back
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        })}
+      {sortedDivisions.map(([divisionName, teams]) => {
+        const sortedTeams = [...teams].sort(sortByDivisionRank)
+        return (
+          <Division
+            divisionName={divisionName}
+            teams={sortedTeams}
+            key={divisionName}
+          />
+        )
+      })}
     </ul>
   )
 }

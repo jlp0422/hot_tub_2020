@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Container,
-  Img,
+  Logo,
   TeamLink,
   TeamName,
   TeamLogos,
@@ -21,11 +21,11 @@ const EntryRow = ({ entry, getTotalWins, teamsInfo }) => {
       </TeamName>
       <TeamLogos>
         {teamSelections.map(team => (
-          <Img
+          <Logo
             src={teamsInfo[team].logo}
             key={team}
             size='35'
-            bgColor={teamsInfo[team].colors[0]}
+            backgroundColor={teamsInfo[team].colors[0]}
           />
         ))}
       </TeamLogos>

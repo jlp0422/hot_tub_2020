@@ -17,8 +17,8 @@ export default {
     copy: {
       p: '1.4rem',
       h5: '1.6rem',
-      h3: '2.0rem',
       h4: '1.8rem',
+      h3: '2.0rem',
       h2: '2.2rem',
       h1: '2.4rem'
     }

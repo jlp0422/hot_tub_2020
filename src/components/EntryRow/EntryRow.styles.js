@@ -1,6 +1,8 @@
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 import { margin } from 'polished'
+import TeamLogo from '../shared/TeamLogo'
+import { Img } from '../shared/TeamLogo/TeamLogo'
 
 export const Container = styled.li`
   background-color: lightslategray;
@@ -38,13 +40,8 @@ export const TeamLogos = styled.div`
   white-space: nowrap;
 `
 
-export const Img = styled.img`
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
+export const Logo = styled(Img)`
   ${props => margin(0, 0, 0, props.theme.size.space.xs)};
-  padding: ${({ theme }) => theme.size.space.xxs};
-  background-color: ${props => props.bgColor};
-  border-radius: 50%;
   :first-of-type {
     margin-left: 0;
   }
