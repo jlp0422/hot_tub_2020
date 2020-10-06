@@ -1,0 +1,62 @@
+{
+  "entries": {
+    "data": [
+      {
+        "_id": "271891832623858176",
+        "teamName": "TheGreatest",
+        "teamSelections": ["MIA", "NYJ", "BUF"],
+        "fullName": "Jeremy Philipson",
+        "email": "testy@test.com"
+      },
+      {
+        "_id": "272033742341538304",
+        "teamName": "Heisenberg",
+        "teamSelections": ["ARI", "ATL", "BAL", "BUF"],
+        "fullName": "98 98",
+        "email": "testy98@test.com"
+      },
+      {
+        "_id": "272033835450892800",
+        "teamName": "White Walkers",
+        "teamSelections": ["ARI", "ATL", "BAL", "BUF"],
+        "fullName": "51 51",
+        "email": "testy51@test.com"
+      },
+      {
+        "_id": "272051516259435008",
+        "teamName": "I Like Football",
+        "teamSelections": ["CIN", "CAR", "BUF"],
+        "fullName": "6 6",
+        "email": "testy6@test.com"
+      },
+      {
+        "_id": "272051540658749971",
+        "teamName": "Otto Otto",
+        "teamSelections": ["CAR", "BAL", "ATL"],
+        "fullName": "50 50",
+        "email": "testy50@test.com"
+      },
+      {
+        "_id": "272052426548183552",
+        "teamName": "Ever, Greatest",
+        "teamSelections": ["BUF", "ATL", "ARI"],
+        "fullName": "4 4",
+        "email": "testy4@test.com"
+      },
+      {
+        "_id": "273061962423730688",
+        "teamName": "Test Team 66",
+        "teamSelections": ["ARI", "BAL", "BUF", "CAR"],
+        "fullName": "66 66",
+        "email": "testy66@test.com"
+      },
+      {
+        "_id": "273062731932762642",
+        "teamName": "the best team",
+        "teamSelections": ["ARI"],
+        "fullName": "",
+        "email": "test@test.com"
+      }
+    ]
+  }
+}

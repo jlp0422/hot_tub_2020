@@ -20,7 +20,8 @@ export const reduceTeamsToWins = (memo, { team, stats }) =>
     [team.abbreviation]: {
       wins: stats.standings.wins,
       logo: `${team.officialLogoImageSrc}.svg`,
-      colors: team.teamColoursHex
+      colors: team.teamColoursHex,
+      fullName: `${team.city} ${team.name}`
     }
   })
 

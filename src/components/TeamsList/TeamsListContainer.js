@@ -12,7 +12,7 @@ const TeamsListContainer = props => {
       .post('/api/teams')
       .then(({ data }) => {
         setTeams(data.teams.data)
-        console.log(data)
+        console.log('** TEAMS LIST', data)
       })
       .catch(error => {
         setError(JSON.parse(JSON.stringify(error)))

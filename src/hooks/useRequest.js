@@ -12,7 +12,7 @@ const useRequest = (route, { initialState = null } = {}) => {
       .get(route)
       .then(({ data }) => {
         if (isFetching) {
-          console.log(data)
+          console.log('** REQUST DATA', data)
           setData(data)
           setLoading(false)
         }

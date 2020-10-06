@@ -3,7 +3,7 @@ import {
   reduceSelectionsToTotalWins,
   reduceTeamsToWins
 } from '../../helpers/utils'
-import EntryRow from '../EntryRow/EntryRow'
+import EntryRow from '../EntryRow'
 import styled from '@emotion/styled'
 
 const Ul = styled.ul`
@@ -22,12 +22,13 @@ const EntryList = ({ entries, standings }) => {
           key={entry._id}
           entry={entry}
           getTotalWins={getTotalWins}
-          teamsInfo={entry.teamSelections.reduce((memo, teamAbbrev) => {
-            const { logo, colors } = winsByTeam[teamAbbrev]
-            return Object.assign({}, memo, {
-              [teamAbbrev]: { logo, colors }
-            })
-          }, {})}
+          teamsInfo={entry.teamSelections.reduce(
+            (memo, teamAbbrev) =>
+              Object.assign({}, memo, {
+                [teamAbbrev]: winsByTeam[teamAbbrev]
+              }),
+            {}
+          )}
         />
       ))}
     </Ul>

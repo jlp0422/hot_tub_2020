@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 import { margin } from 'polished'
-import TeamLogo from '../shared/TeamLogo'
+// import TeamLogo from '../shared/TeamLogo'
 import { Img } from '../shared/TeamLogo/TeamLogo'
 
 export const Container = styled.li`
@@ -36,8 +36,8 @@ export const TeamLink = styled(Link)`
 export const TeamLogos = styled.div`
   margin: 0;
   line-height: 0;
-  overflow: scroll;
-  white-space: nowrap;
+  /* overflow: scroll;
+  white-space: nowrap; */
 `
 
 export const Logo = styled(Img)`

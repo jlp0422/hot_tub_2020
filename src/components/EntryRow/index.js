@@ -1,1 +1,1 @@
-export { default } from './EntryRow'
+export { default } from './EntryRowContainer'

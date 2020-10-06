@@ -4,6 +4,7 @@ import TeamLogo from '../shared/TeamLogo'
 
 const Table = styled.table`
   width: 100%;
+  border-collapse: collapse;
 `
 
 const Thead = styled.thead`
@@ -11,6 +12,12 @@ const Thead = styled.thead`
 `
 const Tr = styled.tr`
   padding: ${props => `${props.theme.size.space.xs} 0`};
+`
+
+const BodyRow = styled(Tr)`
+  :nth-of-type(odd) {
+    background-color: gray;
+  }
 `
 
 const Th = styled.th`
@@ -22,6 +29,12 @@ const Tbody = styled.tbody`
 `
 const Td = styled.td`
   padding: ${props => props.theme.size.space.xs};
+  :first-of-type {
+    border-radius: 5px 0 0 5px;
+  }
+  :last-of-type {
+    border-radius: 0 5px 5px 0;
+  }
 `
 
 const TeamAndLogo = styled.span`
@@ -49,7 +62,7 @@ const Division = ({ divisionName, teams }) => {
           {teams.map(({ team, stats, divisionRank }) => {
             const src = `${team.officialLogoImageSrc}.svg`
             return (
-              <Tr key={team.id}>
+              <BodyRow key={team.id}>
                 <Td>{divisionRank.rank}</Td>
                 <Td>
                   <TeamAndLogo>
@@ -63,7 +76,7 @@ const Division = ({ divisionName, teams }) => {
                 </Td>
                 <Td>{stats.standings.wins}</Td>
                 <Td>{divisionRank.gamesBack}</Td>
-              </Tr>
+              </BodyRow>
             )
           })}
         </Tbody>
