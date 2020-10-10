@@ -10,8 +10,8 @@ export const Container = styled.li`
   align-items: center;
   font-weight: bold;
   @media screen and (max-width: 640px) {
-    grid-template-columns: minmax(100, 1fr) 100px;
     grid-template-rows: auto;
+    grid-template-columns: 2fr 2fr 1fr;
   }
 `
 
@@ -22,6 +22,9 @@ export const TeamName = styled.span`
   text-overflow: ellipsis;
   :hover {
     color: lightgray;
+  }
+  @media screen and (max-width: 640px) {
+    grid-column: 1 / span 2;
   }
 `
 
@@ -40,6 +43,7 @@ export const TeamLogos = styled.div`
   line-height: 0;
   @media screen and (max-width: 640px) {
     grid-row-start: 2;
+    grid-column: 1 / span 3;
     margin-top: ${({ theme }) => theme.size.space.xs};
   }
 `
@@ -56,4 +60,9 @@ export const Wins = styled.div`
   margin: 0;
   text-align: right;
   font-size: ${({ theme }) => theme.size.copy.h2};
+  @media screen and (max-width: 640px) {
+    grid-row-start: 1;
+    grid-column-start: 3;
+    margin-top: ${({ theme }) => theme.size.space.xs};
+  }
 `
