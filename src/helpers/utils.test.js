@@ -40,16 +40,21 @@ describe('reduceTeamsToWins', () => {
     team: {
       abbreviation: 'MIA',
       officialLogoImageSrc: 'path/to/logo',
-      teamColoursHex: ['abc']
+      teamColoursHex: ['abc'],
+      city: 'Miami',
+      name: 'Dolphins'
     },
-    stats: { standings: { wins: 5 } }
+    stats: { standings: { wins: 5 } },
+    divisionRank: { rank: 2 }
   }
   it('adds a key/value of team abbrev and total wins', () => {
     expect(reduceTeamsToWins({}, team)).toEqual({
       MIA: {
         wins: 5,
         logo: 'path/to/logo.svg',
-        colors: ['abc']
+        colors: ['abc'],
+        divisionRank: 2,
+        fullName: 'Miami Dolphins'
       }
     })
     expect(
@@ -58,7 +63,9 @@ describe('reduceTeamsToWins', () => {
           KC: {
             wins: 12,
             logo: 'path/to/logo.svg',
-            colors: ['abc']
+            colors: ['abc'],
+            divisionRank: 1,
+            fullName: 'Kansas City Chiefs'
           }
         },
         team
@@ -67,12 +74,16 @@ describe('reduceTeamsToWins', () => {
       MIA: {
         wins: 5,
         logo: 'path/to/logo.svg',
-        colors: ['abc']
+        colors: ['abc'],
+        divisionRank: 2,
+        fullName: 'Miami Dolphins'
       },
       KC: {
         wins: 12,
         logo: 'path/to/logo.svg',
-        colors: ['abc']
+        colors: ['abc'],
+        divisionRank: 1,
+        fullName: 'Kansas City Chiefs'
       }
     })
   })
