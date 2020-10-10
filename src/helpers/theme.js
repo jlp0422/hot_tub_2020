@@ -15,6 +15,8 @@ export default {
       xxl: '1.6rem'
     },
     copy: {
+      xmini: '1rem',
+      mini: '1.2rem',
       p: '1.4rem',
       h5: '1.6rem',
       h4: '1.8rem',

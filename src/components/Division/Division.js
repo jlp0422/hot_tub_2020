@@ -16,7 +16,7 @@ const Tr = styled.tr`
 
 const BodyRow = styled(Tr)`
   :nth-of-type(odd) {
-    background-color: gray;
+    background-color: lightslategray;
   }
 `
 

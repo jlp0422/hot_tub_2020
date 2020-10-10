@@ -15,13 +15,14 @@ export const reduceTeamsToDivisions = (memo, { divisionRank, stats, team }) => {
   return memo
 }
 
-export const reduceTeamsToWins = (memo, { team, stats }) =>
+export const reduceTeamsToWins = (memo, { team, stats, divisionRank }) =>
   Object.assign({}, memo, {
     [team.abbreviation]: {
       wins: stats.standings.wins,
       logo: `${team.officialLogoImageSrc}.svg`,
       colors: team.teamColoursHex,
-      fullName: `${team.city} ${team.name}`
+      fullName: `${team.city} ${team.name}`,
+      divisionRank: divisionRank.rank
     }
   })
 

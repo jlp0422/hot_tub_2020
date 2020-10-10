@@ -6,7 +6,11 @@ export default {
   title: 'Entry/EntryRow'
 }
 
-const Template = args => <EntryRow {...args} />
+const Template = args => (
+  <div style={{ backgroundColor: 'gray' }}>
+    <EntryRow {...args} />
+  </div>
+)
 
 const WINS_PER_TEAM = {
   CAR: 2,

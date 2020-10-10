@@ -17,7 +17,7 @@ export default () => {
         html,
         body {
           background: ${theme.palette.background.primary};
-          margin: 0;
+          margin: 0 0 ${theme.size.space.m};
           color: ${theme.palette.text.primary};
           font-family: ${theme.fonts.copy}, -apple-system, BlinkMacSystemFont,
             'Segoe UI', Roboto, Helvetica, Arial, sans-serif,

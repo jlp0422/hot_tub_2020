@@ -5,6 +5,9 @@ import styled from '@emotion/styled'
 
 const Container = styled.div`
   cursor: pointer;
+  background-color: lightslategray;
+  border-radius: ${({ theme }) => theme.size.space.xs};
+  padding: ${({ theme }) => theme.size.space.xl};
 `
 
 const EntryRowContainer = props => {
