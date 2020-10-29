@@ -11,7 +11,7 @@ const Container = styled.div`
 `
 
 const EntryRowContainer = props => {
-  console.log('**', props)
+  console.log('** entry row container', props)
   const { teamsInfo } = props
   const [isExpanded, setIsExpanded] = useState(false)
 

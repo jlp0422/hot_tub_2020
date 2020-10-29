@@ -28,7 +28,7 @@ const EntryRowExpanded = props => {
               <TeamWins>
                 {fullName}: {wins} {wins === 1 ? 'win' : 'wins'}
               </TeamWins>
-              <Badge type='DIVISION_WINNER' />
+              <Badge type={wins < 8 ? 'DIVISION_LEADER' : 'DIVISION_WINNER'} />
             </Row>
           )
         )}

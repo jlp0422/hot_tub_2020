@@ -9,8 +9,14 @@ export const Img = styled.img`
   border-radius: 50%;
 `
 
-const TeamLogo = ({ src, backgroundColor, size }) => (
-  <Img src={src} size={size} backgroundColor={backgroundColor} />
+const TeamLogo = ({ alt, title, src, backgroundColor, size }) => (
+  <Img
+    alt={alt}
+    title={title}
+    src={src}
+    size={size}
+    backgroundColor={backgroundColor}
+  />
 )
 
 export default TeamLogo

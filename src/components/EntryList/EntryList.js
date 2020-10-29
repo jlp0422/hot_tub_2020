@@ -31,6 +31,20 @@ const EntryList = ({ entries, standings }) => {
           )}
         />
       ))}
+      {entries.entries.data.map(entry => (
+        <EntryRow
+          key={entry._id}
+          entry={entry}
+          getTotalWins={getTotalWins}
+          teamsInfo={entry.teamSelections.reduce(
+            (memo, teamAbbrev) =>
+              Object.assign({}, memo, {
+                [teamAbbrev]: winsByTeam[teamAbbrev]
+              }),
+            {}
+          )}
+        />
+      ))}
     </Ul>
   )
 }

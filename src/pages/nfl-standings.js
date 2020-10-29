@@ -4,23 +4,28 @@ import Layout from '../components/shared/Layout'
 import { sortByDivisionRank, reduceTeamsToDivisions } from '../helpers/utils'
 import HandleRequest from '../components/shared/HandleRequest'
 import Division from '../components/Division'
+import styled from '@emotion/styled'
 
-const StandingsContainer = () => {
+const Ul = styled.ul`
+  padding: 0;
+`
+
+const NflStandingsContainer = () => {
   const { data, error, loading } = useRequest('/api/standings')
   return (
     <Layout>
       <HandleRequest error={error} loading={loading}>
-        <Standings data={data} />
+        <NflStandings data={data} />
       </HandleRequest>
     </Layout>
   )
 }
 
-const Standings = ({ data }) => {
+const NflStandings = ({ data }) => {
   const divisions = data.teams.reduce(reduceTeamsToDivisions, {})
   const sortedDivisions = Object.entries(divisions).sort()
   return (
-    <ul>
+    <Ul>
       {sortedDivisions.map(([divisionName, teams]) => {
         const sortedTeams = [...teams].sort(sortByDivisionRank)
         return (
@@ -31,8 +36,8 @@ const Standings = ({ data }) => {
           />
         )
       })}
-    </ul>
+    </Ul>
   )
 }
 
-export default StandingsContainer
+export default NflStandingsContainer
